@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "760201287333",
-    "project_id": "brfideliza-b65a6",
-    "storage_bucket": "brfideliza-b65a6.appspot.com"
+    "project_number": "87152115420",
+    "project_id": "brfideliza-ab651",
+    "storage_bucket": "brfideliza-ab651.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:760201287333:android:08e5e21777ab0d40745f4c",
+        "mobilesdk_app_id": "1:87152115420:android:c388d8e91ffed568d1fe19",
         "android_client_info": {
           "package_name": "com.example.app_flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "760201287333-5bi5vgtue5t87bsrasm97a7kk99re36j.apps.googleusercontent.com",
+          "client_id": "87152115420-dv3iknchjm677s5kcokuhlr689p7vv9q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app_flutter",
+            "certificate_hash": "c5c2a90ea14aecc10d24f051771187e1a48f2e9c"
+          }
+        },
+        {
+          "client_id": "87152115420-6daceee21mqdg3ci6me00606old3pmaf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCYjd1Uyn3fxe6WELP0snlsztr1hgNlLE8"
+          "current_key": "AIzaSyBF86R2_VigEY4LNbVwsFL9G7974OlN3zg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "760201287333-5bi5vgtue5t87bsrasm97a7kk99re36j.apps.googleusercontent.com",
+              "client_id": "87152115420-6daceee21mqdg3ci6me00606old3pmaf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
