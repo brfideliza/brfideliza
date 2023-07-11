@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:login_flutter/screens/login_screen.dart';
 
-import 'main_app.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
-  await _initHive();
-  runApp(const MainApp());
+  runApp(MyApp()); 
 }
 
-Future<void> _initHive() async{
-  await Hive.initFlutter();
-  await Hive.openBox("login");
-  await Hive.openBox("accounts");
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp (
+      title: 'Email And Password Login',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: LoginScreen()
+    );
+  }
 }
