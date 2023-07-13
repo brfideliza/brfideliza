@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_flutter/screens/registration_screen.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,8 +15,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +27,25 @@ class _LoginScreenState extends State<LoginScreen> {
       autofocus: false,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
+      validator: (value)
+      {
+        if(value!.isEmpty) {
+          return ("Por favor, entre com seu E-mail");
+        }
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
+        {
+          return ("Por favor, entre com um E-mail válido");
+        }
+        return null;
+      },
       onSaved: (value)
       {
         emailController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.mail),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.mail),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "E-mail",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -43,14 +59,24 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: passwordController,
       obscureText: true,
       
+      validator:(value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+        if (value!. isEmpty) {
+          return ("Senha é obrigatória para logar.");
+        }
+        if(!regex.hasMatch(value)) {
+          return ("Por favor, entre com uma senha válida (Min. 6 Caracteres)");
+        }
+        return null;
+      },
       onSaved: (value)
       {
         passwordController.text = value!;
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.lock_rounded),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.lock_rounded),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Senha",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -61,12 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Color.fromARGB(255, 60, 202, 10),
+      color: const Color.fromARGB(255, 60, 202, 10),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {},
-        child: Text("Logar", textAlign: TextAlign.center,
+        onPressed: () {
+          signIn(emailController.text, passwordController.text);
+        },
+        child: const Text("Logar", textAlign: TextAlign.center,
         style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold,
           ),
         )),
@@ -94,29 +122,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       "assets/logo-brfideliza.png",
                       fit: BoxFit.contain,
                     )),
-                  SizedBox(height: 35),
+                  const SizedBox(height: 35),
 
                   emailField,
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   
                   passwordField,
-                  SizedBox(height: 35),
+                  const SizedBox(height: 35),
 
                   loginButton,
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
 
                     children: <Widget>[
-                      Text("Não possui conta? "),
+                     const Text("Não possui conta? "),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationScreen()));
                         },
-                        child: Text(
+                        child: const Text(
                           "Clique aqui", 
                           style: TextStyle(
-                            color: const Color.fromARGB(255, 60, 202, 10),
+                            color: Color.fromARGB(255, 60, 202, 10),
                             decoration: TextDecoration.underline,
                             fontWeight: FontWeight.bold, fontSize: 15),
                         ),
@@ -131,5 +159,21 @@ class _LoginScreenState extends State<LoginScreen> {
       )
     ));
     
+  }
+
+  void signIn(String email, String password) async
+  {
+    if(_formKey.currentState!.validate()) {
+      await _auth
+      .signInWithEmailAndPassword(email: email, password: password)
+      .then((uid) => {
+        Fluttertoast.showToast(msg: "Login realizado com sucesso"),
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen())),
+      })
+      // ignore: body_might_complete_normally_catch_error
+      .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 }

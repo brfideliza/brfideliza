@@ -11,10 +11,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final nameEditingController = new TextEditingController();
-  final emailEditingController = new TextEditingController();
-  final passwordEditingController = new TextEditingController();
-  final confirmPasswordEditingController = new TextEditingController();
+  final nameEditingController = TextEditingController();
+  final emailEditingController = TextEditingController();
+  final passwordEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.account_circle),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.account_circle),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Nome Completo",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -48,8 +48,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.mail),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.mail),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "E-mail",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -67,8 +67,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.lock_rounded),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.lock_rounded),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Senha",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -87,8 +87,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.lock_rounded),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.lock_rounded),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Confirmar Senha",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -99,12 +99,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final signUpButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Color.fromARGB(255, 60, 202, 10),
+      color: const Color.fromARGB(255, 60, 202, 10),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {},
-        child: Text("Criar Conta", textAlign: TextAlign.center,
+        child: const Text("Criar Conta", textAlign: TextAlign.center,
         style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold,
           ),
         )),
@@ -116,7 +116,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.green),
+        icon: const Icon(Icons.arrow_back, color: Colors.green),
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -136,17 +136,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
 
-                  SizedBox(height: 45),
+                  const SizedBox(height: 45),
                   nameField,
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   emailField,
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   passwordField,
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   confirmPasswordField,
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   signUpButton,
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
             ),
