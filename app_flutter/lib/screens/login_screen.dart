@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return ("Senha é obrigatória para logar.");
         }
         if(!regex.hasMatch(value)) {
-          return ("Por favor, entre com uma senha válida (Min. 6 Caracteres)");
+          return ("Senha incorreta");
         }
         return null;
       },
