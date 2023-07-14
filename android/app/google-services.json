@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:87152115420:android:c388d8e91ffed568d1fe19",
         "android_client_info": {
-          "package_name": "com.example.app_flutter"
+          "package_name": "com.brfideliza"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "87152115420-dv3iknchjm677s5kcokuhlr689p7vv9q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.app_flutter",
+            "package_name": "com.brfideliza",
             "certificate_hash": "c5c2a90ea14aecc10d24f051771187e1a48f2e9c"
           }
         },
