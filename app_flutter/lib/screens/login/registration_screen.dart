@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:login_flutter/screens/model/user_model.dart';
-import 'package:login_flutter/screens/login/login_screen.dart';
+import 'package:brfideliza/screens/model/user_model.dart';
+import 'package:brfideliza/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
