@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:brfideliza/firebase_options.dart';
-import 'package:brfideliza/screens/login/login_screen.dart';
+import 'package:brfideliza/screens/login/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.black,
         ),
-        home: const LoginScreen());
+        home: const SplashScreen());
   }
 }
