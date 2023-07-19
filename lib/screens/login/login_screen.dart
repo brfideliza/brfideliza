@@ -53,6 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
     
+    
+
     final passwordField = TextFormField(
 
       autofocus: false,
@@ -84,10 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
+    
+
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: const Color.fromARGB(255, 60, 202, 10),
+      color: const Color.fromARGB(255, 0, 0, 0),
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -102,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
     return Scaffold(
+      
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
@@ -115,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-
+              
                   SizedBox(
                     height: 200,
                     child: Image.asset(
@@ -125,11 +130,35 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 35),
 
                   emailField,
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 10),
+                  
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                                      
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            
+                          },
+                          child: const Text(
+                            "Esqueceu a senha?", 
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              decoration: TextDecoration.underline,
+                              ),
+                          ),
+                        ),
+                      ],
+                                      ),
+                    ),
+                  
                   
                   passwordField,
                   const SizedBox(height: 35),
 
+                  
                   loginButton,
                   const SizedBox(height: 15),
                   Row(
@@ -144,9 +173,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           "Clique aqui", 
                           style: TextStyle(
-                            color: Color.fromARGB(255, 60, 202, 10),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                            
+                            ),
                         ),
                       )
                     ],
