@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:brfideliza/screens/model/user_model.dart';
 import 'package:brfideliza/screens/login/login_screen.dart';
@@ -34,7 +33,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //first name field
+    
+
+
     final nameField = TextFormField(
         autofocus: false,
         controller: nameEditingController,
@@ -166,10 +167,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color.fromARGB(255, 0, 0, 0)),
+        leading: IconButton(   
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             // passing this to our root
             Navigator.of(context).pop();

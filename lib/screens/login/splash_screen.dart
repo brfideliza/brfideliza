@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:brfideliza/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -25,8 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child: Container(
-      child: Image.asset("assets/logo-brfideliza.png"),
-    )));
+            child: Image.asset("assets/logo-brfideliza.png")));
   }
 }

@@ -15,11 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'BrFideliza | Login',
-        theme: ThemeData(
-          primaryColor: Colors.black,
-        ),
-        home: const SplashScreen());
+    return const MaterialApp(
+        home: SplashScreen());
   }
 }

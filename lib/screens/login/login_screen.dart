@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:brfideliza/screens/login/registration_screen.dart';
 import 'home_screen.dart';
+import 'package:brfideliza/screens/login/forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -90,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final loginButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
       color: const Color.fromARGB(255, 0, 0, 0),
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
           signIn(emailController.text, passwordController.text);
         },
         child: const Text("Logar", textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold,
+        style: TextStyle(fontSize: 20, color: Colors.white,
           ),
         )),
     );
@@ -140,14 +141,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: <Widget>[
                         GestureDetector(
                           onTap: () {
-                            
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()));
                           },
                           child: const Text(
                             "Esqueceu a senha?", 
                             style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
-                              decoration: TextDecoration.underline,
-                              ),
+                              color: Colors.blue,
+                    
+                            ),
                           ),
                         ),
                       ],
@@ -173,10 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           "Clique aqui", 
                           style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            decoration: TextDecoration.underline,
-                            
-                            ),
+                            color: Colors.blue,
+                          ),
                         ),
                       )
                     ],
