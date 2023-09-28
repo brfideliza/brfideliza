@@ -148,7 +148,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     //signup button
     final signUpButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
       color: const Color.fromARGB(255, 0, 0, 0),
       child: MaterialButton(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -160,7 +160,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             "Criar conta",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                fontSize: 20, color: Colors.white),
           )),
     );
 
@@ -177,35 +177,48 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           },
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(height: 45),
-                    nameField,
-                    const SizedBox(height: 20),
-                    emailField,
-                    const SizedBox(height: 20),
-                    passwordField,
-                    const SizedBox(height: 20),
-                    confirmPasswordField,
-                    const SizedBox(height: 20),
-                    signUpButton,
-                    const SizedBox(height: 15),
-                  ],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            child: Text(
+              'Preencha suas informações para se juntar a nós!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
+              ),
+          ),
+          Center(
+            child: SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(36.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(height: 45),
+                        nameField,
+                        const SizedBox(height: 20),
+                        emailField,
+                        const SizedBox(height: 20),
+                        passwordField,
+                        const SizedBox(height: 20),
+                        confirmPasswordField,
+                        const SizedBox(height: 20),
+                        signUpButton,
+                        const SizedBox(height: 15),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
