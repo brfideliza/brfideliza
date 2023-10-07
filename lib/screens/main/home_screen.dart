@@ -13,11 +13,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const Center(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        
         children: <Widget>[
           Text(
-            'Home',
+            'Nearby',
             style: TextStyle(fontSize: 24),
           ),
         ],
@@ -52,12 +52,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Início'),
-        backgroundColor: Colors.black,
+        title: const Row(
+          children: [
+            Text('Welcome',
+              style: TextStyle(
+              fontSize: 24,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                
+                hintText: 'Search event',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+        toolbarHeight: 256,
+        backgroundColor: const Color.fromARGB(255, 51, 49, 49),
         foregroundColor: Colors.white,
-        elevation: 0.2,
+        elevation: 0,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(

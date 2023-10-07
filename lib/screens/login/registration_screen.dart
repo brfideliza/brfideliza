@@ -183,7 +183,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
-              'Preencha suas informações para se juntar a nós!',
+              'Preencha suas informações para se juntar à nós!',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
               ),

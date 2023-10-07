@@ -52,7 +52,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
-              'Entre com seu email e enviaremos a você um link para resetar sua senha.',
+              'Digite seu email e enviaremos a você um link para resetar sua senha.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
               ),
