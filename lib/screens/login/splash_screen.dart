@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:brfideliza/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+  static const String id = 'splash_screen';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -23,7 +25,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Image.asset("assets/logo-brfideliza.png")));
+        body: Center(child: Image.asset("assets/logo-brfideliza.png")));
   }
 }

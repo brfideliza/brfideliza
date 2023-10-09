@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
+  static const String id = 'forgot_password_screen';
 
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-
   final emailController = TextEditingController();
 
   @override
@@ -20,22 +20,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   Future passwordReset() async {
     try {
-      await FirebaseAuth.instance.
-        sendPasswordResetEmail(email: emailController.text.trim());
-        // ignore: use_build_context_synchronously
-        showDialog(context: context, builder: (context) {
-        return const AlertDialog(
-          content: Text('Link enviado! Cheque seu e-mail'),
-        );
-      });
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+      // ignore: use_build_context_synchronously
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('Link enviado! Cheque seu e-mail'),
+            );
+          });
     } on FirebaseAuthException catch (e) {
       print(e);
       // ignore: use_build_context_synchronously
-      showDialog(context: context, builder: (context) {
-        return const AlertDialog(
-          content: Text('Erro: E-mail não encontrado'),
-        );
-      });
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('Erro: E-mail não encontrado'),
+            );
+          });
     }
   }
 
@@ -55,11 +59,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               'Digite seu email e enviaremos a você um link para resetar sua senha.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
-              ),
+            ),
           ),
-                  
           const SizedBox(height: 30),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
@@ -67,30 +69,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.mail),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    borderSide: const BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(10)),
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(10), 
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 hintText: 'E-mail',
                 filled: true,
-                ),
               ),
             ),
-
-            const SizedBox(height: 10),
-
-            MaterialButton(
-              onPressed: passwordReset,
-              color: Colors.black,
-              textColor: Colors.white,
-              child: const Text('Confirmar'),
-            ),
+          ),
+          const SizedBox(height: 10),
+          MaterialButton(
+            onPressed: passwordReset,
+            color: Colors.black,
+            textColor: Colors.white,
+            child: const Text('Confirmar'),
+          ),
         ],
       ),
-      
     );
   }
 }

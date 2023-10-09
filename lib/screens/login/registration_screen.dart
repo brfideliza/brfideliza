@@ -1,31 +1,24 @@
-// ignore_for_file: avoid_print
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:brfideliza/screens/model/user_model.dart';
-import 'package:brfideliza/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../components/login_text_field.dart';
+import '../../models/user_model.dart';
+import '../login/login_screen.dart';
+
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
+  static const String id = 'registration_screen';
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RegistrationScreenState createState() {
-    return _RegistrationScreenState();
-  }
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
-  
-  // string for displaying the error Message
   String? errorMessage;
-
-
-  // our form key
   final _formKey = GlobalKey<FormState>();
-  // editing Controller
   final nameEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
@@ -33,119 +26,66 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
+    final nameField = LoginTextField(
+      controller: nameEditingController,
+      obscureText: false,
+      keyboardType: TextInputType.name,
+      regex: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) return ("Insira seu nome completo");
+        if (!regex.hasMatch(value)) return ("Nome inválido");
+        return null;
+      },
+      textInputAction: TextInputAction.next,
+      hintText: "Nome Completo",
+      icon: Icons.account_circle,
+    );
 
+    final emailField = LoginTextField(
+      controller: emailEditingController,
+      obscureText: false,
+      keyboardType: TextInputType.emailAddress,
+      regex: (value) {
+        if (value!.isEmpty) return ("Insira seu e-mail");
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
+          return ("Email inválido");
+        return null;
+      },
+      textInputAction: TextInputAction.next,
+      hintText: "Email",
+      icon: Icons.mail,
+    );
 
-    final nameField = TextFormField(
-        autofocus: false,
-        controller: nameEditingController,
-        keyboardType: TextInputType.name,
-        validator: (value) {
-          RegExp regex = RegExp(r'^.{3,}$');
-          if (value!.isEmpty) {
-            return ("Insira seu nome completo");
-          }
-          if (!regex.hasMatch(value)) {
-            return ("Nome inválido");
-          }
-          return null;
-        },
-        onSaved: (value) {
-          nameEditingController.text = value!;
-        },
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.account_circle),
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Nome Completo",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
+    final passwordField = LoginTextField(
+      controller: passwordEditingController,
+      obscureText: true,
+      regex: (value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+        if (value!.isEmpty) return ("Insira sua senha");
+        if (!regex.hasMatch(value))
+          return ("Insira uma senha válida (Min. 6 Caracteres)");
+        return null;
+      },
+      onSaved: (value) => nameEditingController.text = value!,
+      textInputAction: TextInputAction.next,
+      hintText: "Senha",
+      icon: Icons.vpn_key,
+    );
 
-    //email field
-    final emailField = TextFormField(
-        autofocus: false,
-        controller: emailEditingController,
-        keyboardType: TextInputType.emailAddress,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return ("Insira seu e-mail");
-          }
-          // reg expression for email validation
-          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-              .hasMatch(value)) {
-            return ("Email inválido");
-          }
-          return null;
-        },
-        onSaved: (value) {
-          nameEditingController.text = value!;
-        },
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.mail),
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Email",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
+    final confirmPasswordField = LoginTextField(
+      controller: confirmPasswordEditingController,
+      obscureText: true,
+      validator: (value) {
+        if (confirmPasswordEditingController.text !=
+            passwordEditingController.text) return "Senhas diferentes";
+        return null;
+      },
+      onSaved: (value) => confirmPasswordEditingController.text = value!,
+      textInputAction: TextInputAction.done,
+      hintText: "Confirmar senha",
+      icon: Icons.vpn_key,
+    );
 
-    //password field
-    final passwordField = TextFormField(
-        autofocus: false,
-        controller: passwordEditingController,
-        obscureText: true,
-        validator: (value) {
-          RegExp regex = RegExp(r'^.{6,}$');
-          if (value!.isEmpty) {
-            return ("Insira sua senha");
-          }
-          if (!regex.hasMatch(value)) {
-            return ("Insira uma senha válida (Min. 6 Caracteres)");
-          }
-          return null;
-        },
-        onSaved: (value) {
-          nameEditingController.text = value!;
-        },
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.vpn_key),
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Senha",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
-
-    //confirm password field
-    final confirmPasswordField = TextFormField(
-        autofocus: false,
-        controller: confirmPasswordEditingController,
-        obscureText: true,
-        validator: (value) {
-          if (confirmPasswordEditingController.text !=
-              passwordEditingController.text) {
-            return "Senhas diferentes";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          confirmPasswordEditingController.text = value!;
-        },
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.vpn_key),
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Confirmar senha",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
-
-    //signup button
     final signUpButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(10),
@@ -159,8 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           child: const Text(
             "Criar conta",
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.white),
+            style: TextStyle(fontSize: 20, color: Colors.white),
           )),
     );
 
@@ -169,7 +108,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        leading: IconButton(   
+        leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             // passing this to our root
@@ -183,10 +122,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
-              'Preencha suas informações para se juntar à nós!',
+              'Preencha suas informações.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
-              ),
+            ),
           ),
           Center(
             child: SingleChildScrollView(
@@ -222,13 +161,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
+
   void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) => {postDetailsToFirestore()})
-            // ignore: body_might_complete_normally_catch_error
             .catchError((e) {
           Fluttertoast.showToast(msg: e!.message);
         });
@@ -260,10 +199,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
     }
   }
+
   postDetailsToFirestore() async {
     // calling our firestore
     // calling our user model
-    // sedning these values
+    // sending these values
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
@@ -279,7 +219,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Conta criada com sucesso :) ");
+    Fluttertoast.showToast(msg: "Conta criada com sucesso.");
 
     Navigator.pushAndRemoveUntil(
         (context),
