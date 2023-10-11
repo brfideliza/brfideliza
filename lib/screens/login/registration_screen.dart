@@ -140,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 16),
                           nameField,
                           const SizedBox(height: 20),
                           emailField,
