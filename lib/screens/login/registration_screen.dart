@@ -116,48 +116,50 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           },
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text(
-              'Preencha suas informações.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 55.0),
+              child: Text(
+                'Preencha suas informações.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-          ),
-          Center(
-            child: SingleChildScrollView(
-              child: Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(36.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const SizedBox(height: 45),
-                        nameField,
-                        const SizedBox(height: 20),
-                        emailField,
-                        const SizedBox(height: 20),
-                        passwordField,
-                        const SizedBox(height: 20),
-                        confirmPasswordField,
-                        const SizedBox(height: 20),
-                        signUpButton,
-                        const SizedBox(height: 15),
-                      ],
+            Center(
+              child: SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(36, 0, 36, 0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(height: 15),
+                          nameField,
+                          const SizedBox(height: 20),
+                          emailField,
+                          const SizedBox(height: 20),
+                          passwordField,
+                          const SizedBox(height: 20),
+                          confirmPasswordField,
+                          const SizedBox(height: 20),
+                          signUpButton,
+                          const SizedBox(height: 15),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
