@@ -24,7 +24,7 @@ class BrFideliza extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "BrFideliza",
-      initialRoute: LoginScreen.id,
+      initialRoute: ExploreScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
