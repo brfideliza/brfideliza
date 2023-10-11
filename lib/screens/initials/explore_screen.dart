@@ -11,12 +11,39 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   int _index = 0;
 
+  static const List<Widget> _pages = <Widget>[
+    Icon(
+      Icons.explore,
+      size: 150,
+    ),
+    Icon(
+      Icons.notifications,
+      size: 150,
+    ),
+    Icon(
+      Icons.person,
+      size: 150,
+    ),
+    Icon(
+      Icons.menu,
+      size: 150,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: ,
-        body: const Text("Explore screen"),
+        appBar: AppBar(
+          title: const Text("BrFideliza"),
+          backgroundColor: Colors.black,
+        ),
+        body: Center(
+          child: IndexedStack(
+            index: _index,
+            children: _pages,
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (newIndex) => setState(() => _index = newIndex),
           currentIndex: _index,
