@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'screens/events/event_screen.dart';
 import 'screens/initials/explore_screen.dart';
-import 'screens/initials/notifications_screen.dart';
 // import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'screens/login/forgot_password.dart';
@@ -27,7 +26,7 @@ class BrFideliza extends StatelessWidget {
     return MaterialApp(
       title: "BrFideliza",
       theme: ThemeData(),
-      initialRoute: EventScreen.id,
+      initialRoute: ExploreScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
