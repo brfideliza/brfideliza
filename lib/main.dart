@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/events/event_screen.dart';
 import 'screens/initials/explore_screen.dart';
+import 'screens/initials/notifications_screen.dart';
 // import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'screens/login/forgot_password.dart';

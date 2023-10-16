@@ -9,68 +9,74 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  int _index = 0;
-
-  static const List<Widget> _pages = <Widget>[
-    Icon(
-      Icons.explore,
-      size: 150,
-    ),
-    Icon(
-      Icons.notifications,
-      size: 150,
-    ),
-    Icon(
-      Icons.person,
-      size: 150,
-    ),
-    Icon(
-      Icons.menu,
-      size: 150,
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("BrFideliza"),
-          backgroundColor: Colors.black,
-        ),
-        body: Center(
-          child: IndexedStack(
-            index: _index,
-            children: _pages,
+
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Welcome',
+          style: TextStyle(color: Colors.white,
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (newIndex) => setState(() => _index = newIndex),
-          currentIndex: _index,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.black87,
-          unselectedItemColor: Colors.black,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore),
-              label: 'Explore',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notifications',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Account',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              label: 'More',
+          toolbarHeight: 100,
+          backgroundColor: Colors.black87,
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SearchAnchor(
+                  builder: (BuildContext context, SearchController controller) {
+                    return SearchBar(
+                      controller: controller,
+                      padding: const MaterialStatePropertyAll<EdgeInsets>(
+                          EdgeInsets.symmetric(horizontal: 16.0)),
+                      onTap: () {
+                        controller.openView();
+                      },
+                      onChanged: (_) {
+                        controller.openView();
+                      },
+                      leading: const Icon(Icons.search),
+                      hintText: "Search event",
+                    );
+                  }, suggestionsBuilder:
+                  (BuildContext context, SearchController controller) {
+                return List<ListTile>.generate(5, (int index) {
+                  final String event = 'event $index';
+                  return ListTile(
+                    title: Text(event),
+                    onTap: () {
+                      setState(() {
+                        controller.closeView(event);
+                      });
+                    },
+                  );
+                });
+              }),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+@override
+Widget build(BuildContext context) {
+  return const Row(
+    children: [
+      CircleAvatar(
+        backgroundColor: Color(0xFFD9D9D9),
+      ),
+      Column(
+        children: [
+          Text("Name"),
+          Text("Bio"),
+        ],
+      )
+    ],
+  );
 }
