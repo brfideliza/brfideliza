@@ -27,43 +27,70 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: SearchAnchor(builder:
-                      (BuildContext context, SearchController controller) {
-                    return SearchBar(
-                      controller: controller,
-                      padding: const MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 4.0)),
-                      onTap: () {
-                        controller.openView();
-                      },
-                      onChanged: (_) {
-                        controller.openView();
-                      },
-                      leading: const Icon(Icons.search),
-                      hintText: "Search event",
-                    );
-                  }, suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                    return List<ListTile>.generate(5, (int index) {
-                      final String event = 'event $index';
-                      return ListTile(
-                        title: Text(event),
-                        onTap: () {
-                          setState(() {
-                            controller.closeView(event);
-                          });
-                        },
+                  child: SearchAnchor(
+                    builder: (BuildContext context, SearchController controller) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(),
+                          color: Colors.white
+                        ),
+                        child: SearchBar(
+                          controller: controller,
+                          padding: const MaterialStatePropertyAll<EdgeInsets>(
+                            EdgeInsets.symmetric(horizontal: 12.0),
+                          ),
+                          onTap: () {
+                            controller.openView();
+                          },
+                          onChanged: (_) {
+                            controller.openView();
+                          },
+                          leading: const Icon(Icons.search,
+                              color: Colors.grey,
+                            ),
+                          hintText: "Search event",
+                          hintStyle: MaterialStateProperty.resolveWith((states) {
+                            if (states.contains(MaterialState.focused)) {
+                              return TextStyle(
+                                color: Colors.black,
+                                fontSize: 15
+                              );
+                            }
+                            return TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15
+                            );
+                          }),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                          shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                        ),
                       );
-                    });
-                  }),
-                ),
+                    },
+                    suggestionsBuilder: (BuildContext context, SearchController controller) {
+                      return List<ListTile>.generate(5, (int index) {
+                        final String event = 'event $index';
+                        return ListTile(
+                          title: Text(event),
+                          onTap: () {
+                            setState(() {
+                              controller.closeView(event);
+                            });
+                          },
+                        );
+                      });
+                    },
+                  ),
+                )
+
               ],
             ),
           ),
           toolbarHeight: 256,
-          backgroundColor: Colors.black87,
+          backgroundColor: const Color(0xFF3D3D3D),
+
         ),
-        body: Container(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -97,6 +124,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               decoration: BoxDecoration(
                                 color: const Color(0xFF3D3D3D),
                                 borderRadius: BorderRadius.circular(4.0),
+
                               ),
                               child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
