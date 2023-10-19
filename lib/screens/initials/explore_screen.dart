@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../components/bottom_navigation_bar.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
   static const String id = 'explore_screen';
+  static const String routeName = 'explore_screen';
 
   @override
   State<ExploreScreen> createState() => _ExploreScreenState();
@@ -12,9 +14,9 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -52,12 +54,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           hintText: "Search event",
                           hintStyle: MaterialStateProperty.resolveWith((states) {
                             if (states.contains(MaterialState.focused)) {
-                              return TextStyle(
-                                color: Colors.black,
+                              return const TextStyle(
+                                color: Colors.grey,
                                 fontSize: 15
                               );
                             }
-                            return TextStyle(
+                            return const TextStyle(
                               color: Colors.grey,
                               fontSize: 15
                             );
@@ -88,8 +90,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ),
           toolbarHeight: 256,
           backgroundColor: const Color(0xFF3D3D3D),
-
         ),
+
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,8 +174,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ],
           ),
         ),
-      ),
-    );
+            bottomNavigationBar: const bottom_navigation_bar(),
+      );
   }
 }
 
