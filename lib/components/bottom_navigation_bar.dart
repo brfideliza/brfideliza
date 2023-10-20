@@ -15,6 +15,7 @@ class bottom_navigation_bar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
@@ -57,11 +58,10 @@ class bottom_navigation_bar extends StatelessWidget {
             break;
         }
       },
-      backgroundColor: Colors.black, // Cor de fundo da barra
-      selectedItemColor: Colors.black, // Cor dos ícones e rótulos ativos
-      unselectedItemColor: Colors.black, // Cor dos ícones e rótulos inativos
-      selectedFontSize: 14, // Tamanho da fonte dos rótulos ativos
-      unselectedFontSize: 12, // Tamanho da fonte dos rótulos inativos
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
+      selectedFontSize: 14,
+      unselectedFontSize: 12,
     );
   }
 }
