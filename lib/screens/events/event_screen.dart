@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
   static const String id = 'event_screen';
+  static const String routeName = 'event_screen';
 
   @override
   State<EventScreen> createState() => _EventScreenState();
