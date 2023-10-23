@@ -18,28 +18,33 @@ class _EventScreenState extends State<EventScreen> {
           title: const Text("Event Screen"),
           backgroundColor: Colors.black,
         ),
-        body: Column(
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(height: 256.0),
-              items: [1, 2, 3, 4, 5].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 256.0,
+                  viewportFraction: 1,
+                  enableInfiniteScroll: false,
+                  padEnds: false,
+                ),
+                items: [1, 2, 3, 4, 5].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
                         width: MediaQuery.of(context).size.width,
+                        height: 256.0,
                         margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: const BoxDecoration(color: Colors.black38),
-                        child: Text(
-                          'text $i',
-                          style: const TextStyle(fontSize: 16.0),
-                        ));
-                  },
-                );
-              }).toList(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-              child: SingleChildScrollView(
+                        decoration:
+                            const BoxDecoration(color: Color(0xFF3D3D3D)),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,48 +70,76 @@ class _EventScreenState extends State<EventScreen> {
                       ],
                     ),
                     const Divider(),
-                    const Column(
+                    Column(
                       children: [
-                        Row(
-                          children: [
-                            Column(
-                              children: [Text("Title")],
-                            ),
-                            Column(
-                              children: [Text("Show all (6)")],
-                            )
-                          ],
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [H3(), Text("Show all (6)")],
                         ),
-                        Row(
-                          children: [
-                            Record(),
-                            Record(),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Column(
+                            children: [
+                              ItemRow(
+                                icon1: Icons.air,
+                                label1: 'Air Conditioning',
+                                icon2: Icons.fastfood,
+                                label2: 'Snacks',
+                              ),
+                              ItemRow(
+                                icon1: Icons.chair,
+                                label1: 'Great Armchairs',
+                                icon2: Icons.wifi,
+                                label2: 'WIFI',
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                    const Divider(),
+                    const Div(),
                     const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Title"),
-                        Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
-                        Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
+                        H3(),
+                        LoremIpsumText(),
                       ],
                     ),
-                    const Divider(),
+                    const Div(),
                     const Column(
-                      children: [Text("Organizer"), ProfileCard()],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [H3(), ProfileCard()],
                     ),
-                    const Divider(),
-                    const Column(
+                    const Div(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("What You'll Have"),
-                        Item(),
-                        Item(),
-                        Item(),
-                        Item(),
+                        const H3(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Item(
+                                  label: 'WI-FI',
+                                  icon: Icons.wifi,
+                                ),
+                              ),
+                              Item(
+                                label: 'WI-FI',
+                                icon: Icons.wifi,
+                              ),
+                              Item(
+                                label: 'WI-FI',
+                                icon: Icons.wifi,
+                              ),
+                              Item(
+                                label: 'WI-FI',
+                                icon: Icons.wifi,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     TextButton(
@@ -116,10 +149,95 @@ class _EventScreenState extends State<EventScreen> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class Div extends StatelessWidget {
+  const Div({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: Divider(),
+    );
+  }
+}
+
+class LoremIpsumText extends StatelessWidget {
+  const LoremIpsumText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: Column(
+        children: [
+          Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
+          Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
+        ],
+      ),
+    );
+  }
+}
+
+class H3 extends StatelessWidget {
+  const H3({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Title",
+      style: Theme.of(context).textTheme.headlineSmall,
+    );
+  }
+}
+
+class ItemRow extends StatelessWidget {
+  ItemRow({
+    super.key,
+    required this.icon1,
+    required this.label1,
+    required this.icon2,
+    required this.label2,
+  });
+
+  late IconData icon1;
+  late IconData icon2;
+  late String label1;
+  late String label2;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Item(
+            icon: icon1,
+            label: label1,
+          ),
+        ),
+        Expanded(
+          child: Item(
+            icon: icon2,
+            label: label2,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -147,37 +265,22 @@ class ProfileCard extends StatelessWidget {
   }
 }
 
-class Record extends StatelessWidget {
-  const Record({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Item(),
-        Item(),
-      ],
-    );
-  }
-}
-
 class Item extends StatelessWidget {
-  const Item({
+  Item({
     super.key,
+    required this.icon,
+    required this.label,
   });
+
+  late IconData icon;
+  late String label;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        Column(
-          children: [Icon(Icons.add)],
-        ),
-        Column(
-          children: [Text("Label")],
-        ),
+        Icon(icon),
+        Text(label),
       ],
     );
   }
