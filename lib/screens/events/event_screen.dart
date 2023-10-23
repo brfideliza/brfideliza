@@ -1,5 +1,13 @@
+import 'package:brfideliza/utilities/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+import '../../components/circle_icon.dart';
+import '../../components/div.dart';
+import '../../components/h3.dart';
+import '../../components/item_row.dart';
+import '../../components/lorem_ipsum_text.dart';
+import '../../components/profile_card.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -16,32 +24,77 @@ class _EventScreenState extends State<EventScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Event Screen"),
-          backgroundColor: Colors.black,
+          toolbarHeight: 0,
+          title: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 256.0,
-                  viewportFraction: 1,
-                  enableInfiniteScroll: false,
-                  padEnds: false,
-                ),
-                items: [1, 2, 3, 4, 5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
+              SizedBox(
+                width: double.infinity,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  clipBehavior: Clip.none,
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
                         height: 256.0,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration:
-                            const BoxDecoration(color: Color(0xFF3D3D3D)),
-                      );
-                    },
-                  );
-                }).toList(),
+                        viewportFraction: 1.1,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 4),
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 1400),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: false,
+                        padEnds: false,
+                      ),
+                      items: [1, 2, 3, 4, 5].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 256.0,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration:
+                                  const BoxDecoration(color: Color(0xFF3D3D3D)),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    Positioned(
+                      left: 30,
+                      top: 30,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
+                        onPressed: () => print("IconButton pressed"),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 12.0),
+                      child: RotatedBox(
+                          quarterTurns: 1,
+                          child: Icon(
+                            Icons.more_vert_sharp,
+                            color: Colors.white,
+                          )),
+                    ),
+                    const Positioned(
+                      bottom: -23,
+                      right: 45,
+                      child: CircleIcon(),
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding:
@@ -54,28 +107,29 @@ class _EventScreenState extends State<EventScreen> {
                       "Event XXX",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const Column(
-                      children: [
-                        Row(
-                          children: [Text("Row")],
-                        ),
-                        Row(
-                          children: [Text("Row")],
-                        ),
-                        Row(
-                          children: [Text("Row")],
-                        ),
-                        Row(
-                          children: [Text("Row")],
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Column(
+                        children: [
+                          Item(icon: Icons.location_on, label: "Location"),
+                          Item(icon: Icons.event, label: "Dates"),
+                          Item(icon: Icons.groups_sharp, label: "Limit"),
+                          Item(icon: Icons.attach_money, label: "Price"),
+                        ],
+                      ),
                     ),
                     const Divider(),
                     Column(
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [H3(), Text("Show all (6)")],
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              H3(title: "Facilities"),
+                              Text("Show all (6)")
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -102,50 +156,56 @@ class _EventScreenState extends State<EventScreen> {
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        H3(),
+                        H3(title: "Description"),
                         LoremIpsumText(),
                       ],
                     ),
                     const Div(),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [H3(), ProfileCard()],
+                      children: [H3(title: "Organizer"), ProfileCard()],
                     ),
                     const Div(),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const H3(),
+                        const H3(
+                          title: "What You'll Have",
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: Row(
+                          child: Column(
                             children: [
-                              Expanded(
-                                child: Item(
-                                  label: 'WI-FI',
-                                  icon: Icons.wifi,
-                                ),
+                              Item(
+                                label: 'Item 1',
+                                icon: Icons.check,
                               ),
                               Item(
-                                label: 'WI-FI',
-                                icon: Icons.wifi,
+                                label: 'Item 2',
+                                icon: Icons.check,
                               ),
                               Item(
-                                label: 'WI-FI',
-                                icon: Icons.wifi,
-                              ),
-                              Item(
-                                label: 'WI-FI',
-                                icon: Icons.wifi,
+                                label: 'Item 3',
+                                icon: Icons.check,
                               ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("Register"),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              style: kButtonStyle,
+                              onPressed: () {},
+                              child: const Text("Register"),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -154,135 +214,6 @@ class _EventScreenState extends State<EventScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class Div extends StatelessWidget {
-  const Div({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Divider(),
-    );
-  }
-}
-
-class LoremIpsumText extends StatelessWidget {
-  const LoremIpsumText({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Column(
-        children: [
-          Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
-          Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula sapien eget viverra tincidunt. Aliquam et magna a odio facilisis tincidunt. Phasellus vitae consequat odio. Donec non volutpat tellus."),
-        ],
-      ),
-    );
-  }
-}
-
-class H3 extends StatelessWidget {
-  const H3({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "Title",
-      style: Theme.of(context).textTheme.headlineSmall,
-    );
-  }
-}
-
-class ItemRow extends StatelessWidget {
-  ItemRow({
-    super.key,
-    required this.icon1,
-    required this.label1,
-    required this.icon2,
-    required this.label2,
-  });
-
-  late IconData icon1;
-  late IconData icon2;
-  late String label1;
-  late String label2;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Item(
-            icon: icon1,
-            label: label1,
-          ),
-        ),
-        Expanded(
-          child: Item(
-            icon: icon2,
-            label: label2,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        CircleAvatar(
-          backgroundColor: Color(0xFFD9D9D9),
-        ),
-        Column(
-          children: [
-            Text("Name"),
-            Text("Bio"),
-          ],
-        )
-      ],
-    );
-  }
-}
-
-class Item extends StatelessWidget {
-  Item({
-    super.key,
-    required this.icon,
-    required this.label,
-  });
-
-  late IconData icon;
-  late String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon),
-        Text(label),
-      ],
     );
   }
 }

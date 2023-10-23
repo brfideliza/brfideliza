@@ -1,3 +1,4 @@
+import 'package:brfideliza/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/event_model.dart';
@@ -67,15 +68,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color(0xFF6750A4)),
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.symmetric(vertical: 20)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50))),
-                          ),
+                          style: kButtonStyle,
                           onPressed: () {
                             setState(() {
                               addEvent(
