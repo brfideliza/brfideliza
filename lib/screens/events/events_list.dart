@@ -22,26 +22,37 @@ class _EventsListScreenState extends State<EventsListScreen> {
         title: Text('Events List'),
         backgroundColor: const Color(0xFF3D3D3D),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: ListView.separated(
           itemBuilder: (context, index) {
-            return ListTile(
-              tileColor: Colors.white,
-              title: Text('List item'),
-              subtitle: Text('Supporting line text lorem...'),
-              leading: Icon(Icons.event, size: 40,),
-              trailing: Icon(Icons.arrow_right),
-
-            );
+            return const Padding(
+              padding: EdgeInsets.fromLTRB(40, 5, 40, 5),
+              child: ListTile(
+                tileColor: Colors.white,
+                title: Text('List item'),
+                subtitle: Text('Supporting line text lorem...'),
+                leading: Icon(
+                  Icons.event,
+                  size: 40,
+                ),
+                trailing: Icon(
+                  Icons.arrow_right,
+                  color: Colors.black,
+                ),
+                shape: Border(
+                    left: BorderSide(width: 0.2),
+                    right: BorderSide(width: 0.2),
+                    top: BorderSide.none,
+                    bottom: BorderSide(width: 0.6))
+                ),
+              );
           },
           separatorBuilder: (context, index) {
-            return Divider(
-              height: 3,
-              thickness: 1.5,
-              color: Colors.black26,
+            return Center(
+
             );
           },
           itemCount: 8
