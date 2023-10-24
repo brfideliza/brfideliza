@@ -16,9 +16,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Profile'),
+        backgroundColor: Colors.white,
+        title: Text('Profile',
+          
+        ),
       ),
-      bottomNavigationBar: const bottom_navigation_bar(),
+      bottomNavigationBar: const BottomNavigationBarClass(),
     );
   }
 }

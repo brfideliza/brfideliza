@@ -18,7 +18,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             automaticallyImplyLeading: false,
             title: Text('Notifications'),
           ),
-          bottomNavigationBar: const bottom_navigation_bar(),
+          bottomNavigationBar: const BottomNavigationBarClass(),
         );
   }
 }

@@ -7,8 +7,8 @@ import '../screens/initials/more_screen.dart';
 import '../screens/initials/profile_screen.dart';
 
 
-class bottom_navigation_bar extends StatelessWidget {
-  const bottom_navigation_bar({
+class BottomNavigationBarClass extends StatelessWidget {
+  const BottomNavigationBarClass({
     super.key,
   });
 

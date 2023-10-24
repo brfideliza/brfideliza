@@ -174,7 +174,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ],
           ),
         ),
-            bottomNavigationBar: const bottom_navigation_bar(),
+            bottomNavigationBar: const BottomNavigationBarClass(),
       );
   }
 }

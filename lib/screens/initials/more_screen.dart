@@ -18,7 +18,7 @@ class _MoreScreenState extends State<MoreScreen> {
         automaticallyImplyLeading: false,
         title: Text('More'),
       ),
-      bottomNavigationBar: const bottom_navigation_bar(),
+      bottomNavigationBar: const BottomNavigationBarClass(),
     );
   }
 }
