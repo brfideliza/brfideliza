@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../../components/bottom_navigation_bar.dart';
+import '../events/events_list.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -102,7 +103,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
                 child: Divider(),
               ),
-              H1(title: "Favorites"),
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 30,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    H1(title: "Favorites"),
+                    Text("Show all"),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: CarouselSlider(
