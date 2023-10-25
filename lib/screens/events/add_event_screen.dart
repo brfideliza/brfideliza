@@ -5,7 +5,7 @@ import '../../models/event_model.dart';
 import '../initials/explore_screen.dart';
 
 class AddEventScreen extends StatefulWidget {
-  const AddEventScreen({super.key});
+  const AddEventScreen({Key? key}) : super(key: key);
   static const String id = 'add_event';
 
   @override
@@ -15,27 +15,27 @@ class AddEventScreen extends StatefulWidget {
 class _AddEventScreenState extends State<AddEventScreen> {
   final TextEditingController eventName = TextEditingController(),
       eventDescription = TextEditingController(),
-      eventPeopleLimit = TextEditingController();
+      eventPeopleLimit = TextEditingController(),
+      eventPrice = TextEditingController();
   final _addEventFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: const Row(
-              children: [
-                Icon(Icons.arrow_back_ios),
-                Text(
-                  "Add Event",
-                  style: TextStyle(fontSize: 28),
-                ),
-              ],
+        appBar: AppBar(
+          title: const Text(
+            "Add Event",
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.normal,
             ),
-            backgroundColor: const Color(0xFF3D3D3D),
-            toolbarHeight: 90,
           ),
-          body: Form(
+          backgroundColor: const Color(0xFF3D3D3D),
+          toolbarHeight: 90,
+        ),
+        body: SingleChildScrollView(
+          child: Form(
             key: _addEventFormKey,
             child: Padding(
               padding: const EdgeInsets.all(30.0),
@@ -47,20 +47,50 @@ class _AddEventScreenState extends State<AddEventScreen> {
                       TextField(
                         controller: eventName,
                         textCapitalization: TextCapitalization.words,
-                        decoration: const InputDecoration(hintText: 'Name'),
-                      ),
-                      TextField(
-                        controller: eventPeopleLimit,
-                        decoration:
-                            const InputDecoration(hintText: 'People Limit'),
+                        decoration: const InputDecoration(
+                          labelText: 'Name',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.event,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                       TextField(
                         controller: eventDescription,
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
                         maxLines: 4,
-                        decoration:
-                            const InputDecoration(hintText: 'Description'),
+                        decoration: const InputDecoration(
+                          labelText: 'Description',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.feed_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      TextField(
+                        controller: eventPrice,
+                        decoration: const InputDecoration(
+                          labelText: 'Price',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.attach_money,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      TextField(
+                        controller: eventPeopleLimit,
+                        decoration: const InputDecoration(
+                          labelText: 'People Limit',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.people_alt,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -75,13 +105,14 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 eventName.text,
                                 eventDescription.text,
                                 eventPeopleLimit.text,
+                                eventPrice.text,
                               );
                               _addEventFormKey.currentState?.reset();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ExploreScreen()),
+                                  builder: (context) => const ExploreScreen(),
+                                ),
                               );
                             });
                           },
@@ -93,7 +124,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

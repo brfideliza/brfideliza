@@ -12,6 +12,7 @@ addEvent(
   String name,
   String description,
   String peopleLimit,
+  String price,
 ) {
   // final capitalizedName = name
   //     .split(' ')
@@ -21,6 +22,7 @@ addEvent(
     "name": name,
     "description": description,
     "people_limit": peopleLimit,
+    "price": price,
   };
 
   db

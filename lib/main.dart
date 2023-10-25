@@ -33,7 +33,7 @@ class BrFideliza extends StatelessWidget {
     return MaterialApp(
       title: "BrFideliza",
       theme: ThemeData(),
-      initialRoute: EventsListScreen.id,
+      initialRoute: AddEventScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
