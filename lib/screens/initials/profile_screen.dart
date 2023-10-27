@@ -17,8 +17,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: Text('Profile',
-          
+        title: const Text('Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 28,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavigationBarClass(),

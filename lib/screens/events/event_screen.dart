@@ -2,12 +2,14 @@ import 'package:brfideliza/utilities/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+
 import '../../components/circle_icon.dart';
 import '../../components/div.dart';
 import '../../components/h3.dart';
 import '../../components/item_row.dart';
 import '../../components/lorem_ipsum_text.dart';
 import '../../components/profile_card.dart';
+import '../initials/more_screen.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -76,7 +78,9 @@ class _EventScreenState extends State<EventScreen> {
                           Icons.arrow_back_ios,
                           color: Colors.white,
                         ),
-                        onPressed: () => print("IconButton pressed"),
+                          onPressed: () {
+                            Navigator.pushNamed(context, MoreScreen.routeName);
+                          },
                       ),
                     ),
                     const Padding(
