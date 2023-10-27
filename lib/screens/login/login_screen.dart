@@ -28,9 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
       keyboardType: TextInputType.emailAddress,
       obscureText: false,
       validator: (value) {
-        if (value!.isEmpty) return ("Por favor, entre com seu E-mail");
+        if (value!.isEmpty) return ("Please, type your e-mail");
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
-          return ("Por favor, entre com um E-mail válido");
+          return ("Please, enter with a valid e-mail");
         return null;
       },
       onSaved: (value) => emailController.text = value!,
@@ -44,14 +44,14 @@ class _LoginScreenState extends State<LoginScreen> {
       obscureText: true,
       validator: (value) {
         RegExp regex = RegExp(r'^.{6,}$');
-        if (value!.isEmpty) return ("Senha é obrigatória para logar.");
-        if (!regex.hasMatch(value)) return ("Senha incorreta");
+        if (value!.isEmpty) return ("Password is required to log in.");
+        if (!regex.hasMatch(value)) return ("Bad password");
         return null;
       },
 
       onSaved: (value) => passwordController.text = value!,
       textInputAction: TextInputAction.done,
-      hintText: "Senha",
+      hintText: "Password",
       icon: Icons.lock_rounded,
     );
 
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             signIn(emailController.text, passwordController.text);
           },
           child: const Text(
-            "Logar",
+            "Sign in",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           const ForgotPasswordScreen()));
                             },
                             child: const Text(
-                              "Esqueceu a senha?",
+                              "Forgot password?",
                               style: TextStyle(
                                 color: Colors.blue,
                               ),
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text("Não possui conta? "),
+                        const Text("Don't have account? "),
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const RegistrationScreen()));
                           },
                           child: const Text(
-                            "Clique aqui",
+                            "Sign up",
                             style: TextStyle(
                               color: Colors.blue,
                             ),

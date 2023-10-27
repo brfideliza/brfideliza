@@ -27,7 +27,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           context: context,
           builder: (context) {
             return const AlertDialog(
-              content: Text('Link enviado! Cheque seu e-mail'),
+              content: Text('Link sent! Check your e-mail'),
             );
           });
     } on FirebaseAuthException catch (e) {
@@ -37,7 +37,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           context: context,
           builder: (context) {
             return const AlertDialog(
-              content: Text('Erro: E-mail não encontrado'),
+              content: Text('Error: E-mail not found'),
             );
           });
     }
@@ -56,7 +56,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
-              'Digite seu email e enviaremos a você um link para resetar sua senha.',
+              'Enter your email and we will send you a link to reset your password.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
@@ -85,7 +85,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             onPressed: passwordReset,
             color: Colors.black,
             textColor: Colors.white,
-            child: const Text('Confirmar'),
+            child: const Text('Confirm'),
           ),
         ],
       ),

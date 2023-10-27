@@ -31,13 +31,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: false,
       keyboardType: TextInputType.name,
       regex: (value) {
-        RegExp regex = RegExp(r'^.{3,}$');
-        if (value!.isEmpty) return ("Insira seu nome completo");
-        if (!regex.hasMatch(value)) return ("Nome inválido");
+        RegExp regex = RegExp(r'^.{10,}$');
+        if (value!.isEmpty) return ("Enter your full name");
+        if (!regex.hasMatch(value)) return ("Enter your full name");
         return null;
       },
       textInputAction: TextInputAction.next,
-      hintText: "Nome Completo",
+      hintText: "Full Name",
       icon: Icons.account_circle,
     );
 
@@ -46,13 +46,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: false,
       keyboardType: TextInputType.emailAddress,
       regex: (value) {
-        if (value!.isEmpty) return ("Insira seu e-mail");
+        if (value!.isEmpty) return ("Enter your e-mail");
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
-          return ("Email inválido");
+          return ("Invalid e-mail");
         return null;
       },
       textInputAction: TextInputAction.next,
-      hintText: "Email",
+      hintText: "E-mail",
       icon: Icons.mail,
     );
 
@@ -61,14 +61,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: true,
       regex: (value) {
         RegExp regex = RegExp(r'^.{6,}$');
-        if (value!.isEmpty) return ("Insira sua senha");
+        if (value!.isEmpty) return ("Enter your password");
         if (!regex.hasMatch(value))
-          return ("Insira uma senha válida (Min. 6 Caracteres)");
+          return ("Enter a valid password (Min. 6 Characters)");
         return null;
       },
       onSaved: (value) => nameEditingController.text = value!,
       textInputAction: TextInputAction.next,
-      hintText: "Senha",
+      hintText: "Password",
       icon: Icons.vpn_key,
     );
 
@@ -77,12 +77,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: true,
       validator: (value) {
         if (confirmPasswordEditingController.text !=
-            passwordEditingController.text) return "Senhas diferentes";
+            passwordEditingController.text) return "Different passwords";
         return null;
       },
       onSaved: (value) => confirmPasswordEditingController.text = value!,
       textInputAction: TextInputAction.done,
-      hintText: "Confirmar senha",
+      hintText: "Confirm password",
       icon: Icons.vpn_key,
     );
 
@@ -97,7 +97,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             signUp(emailEditingController.text, passwordEditingController.text);
           },
           child: const Text(
-            "Criar conta",
+            "Sign Up",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20, color: Colors.white),
           )),
@@ -123,7 +123,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 55.0),
               child: Text(
-                'Preencha suas informações.',
+                'Welcome to BrFideliza app',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20),
               ),
@@ -221,7 +221,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Conta criada com sucesso.");
+    Fluttertoast.showToast(msg: "Account created successfully.");
 
     Navigator.pushAndRemoveUntil(
         (context),
