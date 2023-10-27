@@ -54,12 +54,14 @@ class _EventsListScreenState extends State<EventsListScreen> {
                         subtitle: Text(docs[index]['description']),
                         leading: const Icon(
                           Icons.event,
-                          size: 40,
+                          color: Colors.black,
+                          size: 35,
                         ),
                         trailing: const Icon(
                           Icons.arrow_right,
                           color: Colors.black,
                         ),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                         shape: const Border(
                             left: BorderSide(width: 0.2),
                             right: BorderSide(width: 0.2),

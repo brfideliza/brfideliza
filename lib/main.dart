@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/events/event_screen.dart';
+import 'screens/events/select_date_event.dart';
+
 import 'screens/initials/explore_screen.dart';
 import 'screens/initials/notifications_screen.dart';
 import 'screens/initials/profile_screen.dart';
@@ -33,7 +35,7 @@ class BrFideliza extends StatelessWidget {
     return MaterialApp(
       title: "BrFideliza",
       theme: ThemeData(),
-      initialRoute: AddEventScreen.id,
+      initialRoute: ExploreScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -46,6 +48,7 @@ class BrFideliza extends StatelessWidget {
         EventScreen.id: (context) => const EventScreen(),
         AddEventScreen.id: (context) => const AddEventScreen(),
         EventsListScreen.id: (context) => const EventsListScreen(),
+        SelectDateEvent.id: (context) => const SelectDateEvent(),
       },
     );
   }

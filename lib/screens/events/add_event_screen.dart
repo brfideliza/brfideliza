@@ -1,3 +1,4 @@
+import 'package:brfideliza/screens/events/select_date_event.dart';
 import 'package:brfideliza/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -159,8 +160,14 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 tileColor: Colors.white,
                                 title: Text('Select Dates / Time'),
                                 subtitle: Text('Select the dates with time for your event.'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => SelectDateEvent()),
+                                  );
+                                },
                                 leading: const Icon(
-                                  Icons.calendar_month,
+                                  Icons.calendar_month_outlined,
                                   color: Colors.black,
                                   size: 30,
                                 ),
