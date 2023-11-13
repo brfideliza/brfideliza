@@ -1,16 +1,19 @@
 # BrFideliza
 
-A new Flutter project.
+Official repository for BrFideliza app, an event management app.
 
-## Getting Started
+## Development Setup
 
-This project is a starting point for a Flutter application.
+### Prerequesites
 
-A few resources to get you started if this is your first Flutter project:
+- Have an editor code, like [Visual Studio Code](https://code.visualstudio.com/) or an IDE like [Android Studio](https://developer.android.com/studio) installed in your local machine
+- Have [Flutter](https://docs.flutter.dev/get-started/install) '>=3.0.3 < 4.0.0' installed in your local machine
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Status
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- In development
+
+## Core Developers
+
+- [Jonatas Mateus](https://github.com/jonatasmateus)
+- [Marcelo Veras](https://github.com/marceloverass)
