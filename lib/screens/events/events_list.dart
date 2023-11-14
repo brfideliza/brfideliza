@@ -1,3 +1,4 @@
+import 'package:brfideliza/screens/events/event_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../components/bottom_navigation_bar.dart';
@@ -66,7 +67,17 @@ class _EventsListScreenState extends State<EventsListScreen> {
                             left: BorderSide(width: 0.2),
                             right: BorderSide(width: 0.2),
                             top: BorderSide.none,
-                            bottom: BorderSide(width: 0.7))
+                            bottom: BorderSide(width: 0.7)
+                        ),
+                      onTap: () {
+                        Map<String, dynamic> eventData = docs[index].data();
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EventScreen(
+                            eventData: eventData,
+                          ),
+                        ));
+                      },
                     ),
                   );
                 },

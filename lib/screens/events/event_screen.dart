@@ -12,7 +12,10 @@ import '../../components/profile_card.dart';
 import '../initials/more_screen.dart';
 
 class EventScreen extends StatefulWidget {
-  const EventScreen({super.key});
+
+  final Map<String, dynamic> eventData;
+
+  const EventScreen({super.key, required this. eventData});
   static const String id = 'event_screen';
   static const String routeName = 'event_screen';
 
@@ -108,7 +111,7 @@ class _EventScreenState extends State<EventScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Event XXX",
+                      widget.eventData['name'],
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Padding(
@@ -117,8 +120,8 @@ class _EventScreenState extends State<EventScreen> {
                         children: [
                           Item(icon: Icons.location_on, label: "Location"),
                           Item(icon: Icons.event, label: "Dates"),
-                          Item(icon: Icons.groups_sharp, label: "Limit"),
-                          Item(icon: Icons.attach_money, label: "Price"),
+                          Item(icon: Icons.groups_sharp, label: "People Limit - " + widget.eventData['people_limit']),
+                          Item(icon: Icons.attach_money, label: "Price - " + widget.eventData['price']),
                         ],
                       ),
                     ),
@@ -157,11 +160,11 @@ class _EventScreenState extends State<EventScreen> {
                       ],
                     ),
                     const Div(),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         H3(title: "Description"),
-                        LoremIpsumText(),
+                        Text(widget.eventData['description']),
                       ],
                     ),
                     const Div(),

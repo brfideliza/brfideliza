@@ -19,25 +19,25 @@ class BottomNavigationBarClass extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.explore,
+            Icons.explore_outlined,
           ),
           label: 'Explore',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.notifications,
+            Icons.notifications_outlined,
           ),
           label: 'Notifications',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.account_circle,
+            Icons.account_circle_outlined,
           ),
           label: 'Profile',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.menu,
+            Icons.menu_outlined,
           ),
           label: 'More',
         ),

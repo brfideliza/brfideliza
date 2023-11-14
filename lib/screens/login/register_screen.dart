@@ -1,47 +1,63 @@
-import 'package:brfideliza/screens/login/forgot_password_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:brfideliza/components/my_button.dart';
 import 'package:brfideliza/components/my_textfield.dart';
-import 'package:brfideliza/screens/login/forgot_password_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+
+class RegisterPage extends StatefulWidget {
 
   Function()? onTap;
 
-  LoginScreen({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  void signUserIn() async {
+  void signUserUp() async {
 
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        showErrorMessage("Passwords don't match");
+      }
+
     } on FirebaseAuthException catch (e) {
 
-      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
-        showErrorMessage();
+      Navigator.pop(context);
+
+      showErrorMessage(e.code);
+
+      if (e.code == 'weak-password') {
+        showErrorMessage('Weak password');
+      }
+
+      else if (e.code == 'email-already-in-use') {
+        showErrorMessage('Email already registered.');
       }
     }
   }
-  void showErrorMessage() {
+  void showErrorMessage(String message) {
     showDialog(
         context: context,
         builder: (context) {
-          return const AlertDialog(
-            title: Text('Usuário não encontrado.'),
+          return AlertDialog(
+            title: Center(
+              child: Text(
+                message,
+              ),
+            ),
           );
         }
     );
@@ -63,16 +79,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 100,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
 
                 Text(
-                  'Seja bem vindo de volta, sentimos sua falta!',
+                  'Vamos criar uma conta pra você!',
                   style: TextStyle(color: Colors.grey[700],
                     fontSize: 16,
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
 
                 MyTextField(
                   controller: emailController,
@@ -90,35 +106,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: const Icon(Icons.lock_outline, color: Colors.black),
                 ),
 
+
                 const SizedBox(height: 10),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  const ForgotPasswordScreen()));
-                        },
-                        child: Text(
-                          'Forgot password?',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                      ),
-                    ],
-                  ),
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: 'Confirm Password',
+                  obscureText: true,
+                  prefixIcon: const Icon(Icons.lock_outline, color: Colors.black),
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 15),
 
                 MyButton(
-                  onTap: signUserIn,
-                  text: 'Sign In',
+                  onTap: signUserUp,
+                  text: 'Sign Up',
                 ),
 
                 const SizedBox(height: 30),
@@ -127,18 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Or continue with'),
-                      ),
-
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
@@ -154,11 +144,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have account?"),
+                    Text('Already have an account?'),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: Text('Sign Up',
+                      child: Text('Sign In',
                         style: TextStyle(
                           color: Colors.blue, fontWeight: FontWeight.bold,
                         ),

@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:brfideliza/screens/login/login_or_register_page.dart';
 import 'package:brfideliza/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+          MaterialPageRoute(builder: (context) => const LoginOrRegisterPage()));
     });
   }
 

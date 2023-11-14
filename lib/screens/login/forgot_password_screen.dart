@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:brfideliza/components/my_textfield.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
-  static const String id = 'forgot_password_screen';
+  static const String id = 'forgot_password_page';
 
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
@@ -27,7 +28,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           context: context,
           builder: (context) {
             return const AlertDialog(
-              content: Text('Link sent! Check your e-mail'),
+              content: Text('Link enviado!'),
             );
           });
     } on FirebaseAuthException catch (e) {
@@ -37,7 +38,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           context: context,
           builder: (context) {
             return const AlertDialog(
-              content: Text('Error: E-mail not found'),
+              content: Text('Email não encontrado!'),
             );
           });
     }
@@ -46,6 +47,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
@@ -53,31 +55,52 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Text(
+                  'Deseja resetar sua senha?',
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Text(
+                  'Digite seu email que enviaremos um link.',
+                  style: TextStyle(
+                      fontSize: 15
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 30),
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text(
-              'Enter your email and we will send you a link to reset your password.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
-            ),
           ),
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: TextField(
+            child: MyTextField(
               controller: emailController,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.mail),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                hintText: 'E-mail',
-                filled: true,
-              ),
+              hintText: 'Email',
+              obscureText: false,
+              prefixIcon: const Icon(Icons.mail_outline, color: Colors.black),
             ),
           ),
           const SizedBox(height: 10),
@@ -85,7 +108,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             onPressed: passwordReset,
             color: Colors.black,
             textColor: Colors.white,
-            child: const Text('Confirm'),
+            child: const Text('Confirmar'),
           ),
         ],
       ),

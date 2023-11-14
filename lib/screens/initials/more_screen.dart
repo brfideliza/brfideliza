@@ -1,6 +1,7 @@
 import 'package:brfideliza/screens/events/add_event_screen.dart';
 import 'package:brfideliza/screens/events/events_list.dart';
 import 'package:brfideliza/screens/events/event_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../components/bottom_navigation_bar.dart';
 
@@ -14,12 +15,22 @@ class MoreScreen extends StatefulWidget {
 }
 
 class _MoreScreenState extends State<MoreScreen> {
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: signUserOut,
+            icon: Icon(Icons.logout), color: Colors.black,
+          )
+        ],
         title: const Text('More',
           style: TextStyle(
             color: Colors.black,
@@ -71,7 +82,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 // Navigate to the page you want
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EventScreen()),
+                  MaterialPageRoute(builder: (context) => EventScreen(eventData: {},)),
                 );
               },
               child: Text(
